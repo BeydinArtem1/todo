@@ -10,6 +10,12 @@ window.onload = function init () {
 //    const tasks =  JSON.parse(localStorage.getItem('tasks'));
 }
 
+const onClickDelete = () => {
+    allTasks = [];
+    localStorage.setItem('tasks', JSON.stringify(allTasks)); 
+    render();
+}
+
 const onClickButton = () => {
     allTasks.push({
         text: valueInput,
