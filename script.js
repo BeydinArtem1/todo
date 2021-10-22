@@ -37,7 +37,6 @@ const onClickButton = async () => {
     });
     let result = await resp.json();
     allTasks = result.data;
-    console.log(allTasks);
     valueInput = '';
     input.value = '';
     render();
@@ -80,7 +79,7 @@ const render = () => {
             inputTask.value = text.innerText;
             container.replaceChild(inputTask, text);            
             imageEdit.onclick = () => {             
-                editVal(text, inputTask, container, item);         
+                editVal(index, inputTask);         
             };
 
             imageDelete.onclick = () => {
@@ -99,11 +98,20 @@ const render = () => {
     });
 };
 
-    const editVal = (text, inputTask, container, item) => {
-        text.innerText = inputTask.value;
-        item.text = inputTask.value;
-        container.replaceChild(text, inputTask);
-        localStorage.setItem('tasks', JSON.stringify(allTasks)); 
+    const editVal = async (index, inputTask) => {
+        const resp = await fetch(`http://localhost:8000/updateTask`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+             'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify({
+            text: inputTask.value,
+            id: allTasks[index].id
+        })
+    });    
+    let result = await resp.json();
+    allTasks = result.data;
         render();
     };
 
@@ -114,18 +122,27 @@ const render = () => {
             'Content-Type': 'application/json;charset=utf-8',
              'Access-Control-Allow-Origin': '*'
         },
-        body: JSON.stringify({
-            text: valueInput,
-            isCheck: false
-        })
     });
     let result = await resp.json();
     allTasks = result.data;
     render();
     };
 
-const onChangeCheckbox = (index) => {
-allTasks[index].isCheck = !allTasks[index].isCheck;
-localStorage.setItem('tasks', JSON.stringify(allTasks)); 
+const onChangeCheckbox = async (index) => {
+    console.log(valueInput)
+const resp = await fetch(`http://localhost:8000/updateTask`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+             'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify({
+            isCheck: !allTasks[index].isCheck,
+            id: allTasks[index].id
+        })
+    });    
+    let result = await resp.json();
+    allTasks = result.data;
 render();
 };
+
