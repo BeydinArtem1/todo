@@ -2,12 +2,16 @@ let allTasks = JSON.parse(localStorage.getItem('tasks')) || [];
 let valueInput = '';
 let input = null;
 
-window.onload = function init () {
+window.onload = init = async () => {
     input = document.getElementById('add-task');
     input.addEventListener('change', updateValue);
+    const resp = await fetch('http://localhost:8000/allTasks', {
+        method: 'GET'
+    })
+    let result = await resp.json();
+    allTasks = result.data;
     render();
-   
-//    const tasks =  JSON.parse(localStorage.getItem('tasks'));
+
 }
 
 const onClickDelete = () => {
@@ -16,11 +20,24 @@ const onClickDelete = () => {
     render();
 }
 
-const onClickButton = () => {
+const onClickButton = async () => {
     allTasks.push({
         text: valueInput,
         isCheck: false
     })
+    const resp = await fetch('http://localhost:8000/createTask', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+             'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify({
+            text: valueInput,
+            isCheck: false
+        })
+    })
+    let result = await resp.json();
+    allTasks = result.data;
     localStorage.setItem('tasks', JSON.stringify(allTasks)); 
     valueInput = '';
     input.value = '';
@@ -94,9 +111,22 @@ allTasks.map((item, index) => {
         render();
     }
 
-    const deleteVal = (index) => {
+    const deleteVal = async (index) => {
     allTasks = allTasks.filter((item, index1) => (index1 !== index));   
-    localStorage.setItem('tasks', JSON.stringify(allTasks)); 
+    // localStorage.setItem('tasks', JSON.stringify(allTasks)); 
+    const resp = await fetch('http://localhost:8000/deleteTask', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+             'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify({
+            text: valueInput,
+            isCheck: false
+        })
+    })
+    let result = await resp.json();
+    allTasks = result.data;
     render();
     };
 
