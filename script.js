@@ -1,4 +1,4 @@
-let allTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+let allTasks = [];
 let valueInput = '';
 let input = null;
 
@@ -14,8 +14,9 @@ window.onload = init = async () => {
 };
 
 const onClickDelete = () => {
-    allTasks = [];
-    localStorage.setItem('tasks', JSON.stringify(allTasks)); 
+  allTasks.map((item, index) => {
+    deleteVal(index);
+    });    
     render();
 };
 
