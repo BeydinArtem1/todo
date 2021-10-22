@@ -1,0 +1,42 @@
+.task-container {
+    display: flex;
+    align-items: center;
+}
+
+.text-task {
+    font-size: 18px;
+    color:black;
+    margin-left: 8px;;
+}
+
+.done-text {
+    color:rgba(0, 0, 0, 0.315);
+    text-decoration: line-through ;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width:50%
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height:50vh; */
+}
+
+i {
+    font-size: 24px;
+    margin:5px;
+}
+
