@@ -38,7 +38,7 @@ const onClickButton = async () => {
     })
     let result = await resp.json();
     allTasks = result.data;
-    localStorage.setItem('tasks', JSON.stringify(allTasks)); 
+    console.log(allTasks);
     valueInput = '';
     input.value = '';
     render();
@@ -112,9 +112,9 @@ allTasks.map((item, index) => {
     }
 
     const deleteVal = async (index) => {
-    allTasks = allTasks.filter((item, index1) => (index1 !== index));   
-    // localStorage.setItem('tasks', JSON.stringify(allTasks)); 
-    const resp = await fetch('http://localhost:8000/deleteTask', {
+    // allTasks = allTasks.filter((item, index1) => (index1 !== index));   
+    
+    const resp = await fetch(`http://localhost:8000/deleteTask?id=${allTasks[index].id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
