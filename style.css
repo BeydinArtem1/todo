@@ -1,0 +1,96 @@
+.task-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.text-task {
+    font-size: 18px;
+    color:black;
+    margin-left: 8px;;
+}
+
+.done-text {
+    color:rgba(0, 0, 0, 0.315);
+    text-decoration: line-through ;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width:450px;
+    
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    
+}
+
+body {
+    background-image: url(./background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:70vh;
+}
+
+i {
+    font-size: 24px;
+    margin:5px;
+}
+
+.b1 {
+    width: 75px;
+    height:45px;
+    color: green;
+    font-size: 20px;
+    font-style: italic;
+    background: linear-gradient(to top, rgb(56, 231, 56), white);
+    border: none;
+    border-radius: 5px;
+    margin:5px;
+}
+
+#add-task{
+    border-radius: 4px;
+    border-color: rgb(112, 112, 221);
+    font-size: 24px;
+    width:50%;
+}
+
+.b2 {
+    width:100px;
+    height:45px;
+    color:#a93e3e;
+    font-size: 20px;
+    font-style: italic;
+    background: linear-gradient(to top, tomato, white);
+    border: none;
+    border-radius: 5px;
+    margin:5px;
+
+}
+
+#content-page {
+    width:100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 0 4px;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.425);
+   
+}
+
+.b1:hover, .b2:hover {
+  box-shadow: 0 0 7px;  
+}
